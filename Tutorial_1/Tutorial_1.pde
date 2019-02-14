@@ -20,12 +20,30 @@ void draw() {
   background(0); // Black Background
   //background(255); White Background
   
-  fill(255);
-  ellipse(mouseX, mouseY, 50, 10*mouseY/100); 
+  //fill(255);
+  //ellipse(mouseX, mouseY, 50, 10*mouseY/100); 
   
   // Draw Ira
   for (Person p: people) {
+    p.update(); // updates location IF selected
     p.drawPerson();
   }
   
+}
+
+void mousePressed() {
+  
+  //background(#FF0000, 100);
+  
+  for (Person p: people) {
+    if(p.checkSelection()) {
+      break;
+    } // ONLY SELECTS ONE PERSON WHEN MOUSE IS CLICKED
+  }
+}
+
+void mouseReleased() {
+  for (Person p: people) {
+    p.locked = false;
+  }
 }
